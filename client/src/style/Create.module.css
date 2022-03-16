@@ -1,0 +1,237 @@
+/* *,
+::before,
+::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+} */
+
+/* body {
+    font-family: 'Lato';  
+    height: 900px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} */
+
+.titulo {
+    text-align: center;
+    font-weight: 700;
+    font-family: "Playfair Display SC";
+    color: whitesmoke
+}
+
+.box_form {
+    background: #B5838D;
+    padding: 45px 0;
+    border-radius: 10px;
+    box-shadow: 
+    0 0 5px rgb(255 240 243),
+    0 0 10px rgb(255 204 213),
+    0 0 15px rgb(255 179 193),
+    0 0 20px rgb(255 143 163),
+    0 0 25px rgb(255 117 143),
+    0 0 30px rgb(255 77 109);
+    height: auto;
+    display: inline-block;
+    margin-top: 20px;
+
+}
+
+.form {
+    width: 100%;
+    margin: auto;
+}
+
+.grupo {
+    position: relative;
+    margin: 45px;
+    margin-top: 35px;
+    margin-bottom: 35px;
+}
+
+.create_input {
+    background: none;
+    color: #c6c6c6;
+    font-size: 18px;
+    padding: 10px 10px 10px 5px;
+    display: block;
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid #49454567;
+}
+
+.create_input:focus {
+    outline: none;
+    color: #5e5d5d
+}
+
+.label {
+    color: white;
+    font-family: monospace;
+    font-size: 18px;
+    position: absolute;
+    top: -5px;
+    left: 5px;
+    transition: 0.5s all;
+    pointer-events: none;
+}
+
+.create_input:focus~.label,
+.create_input:valid~.label {
+    top: -14px;
+    font-size: 15px;
+    color: #495867;
+}
+
+textarea {
+    width: 470px;
+    max-width: 470px;
+    height: 110px;
+    max-height: 120px;
+    padding: 10px;
+    
+    background: transparent;
+    outline: none;
+    
+    color: whitesmoke;
+    font-family: monospace;
+    font-size: 0.875em;
+    
+    border: solid 2px #49454567;
+}
+
+.description {
+    color: white;
+    font-family: monospace;
+    font-size: 18px;
+    position: absolute;
+    top: -25px;
+    left: 5px;
+    transition: 0.5s all;
+    pointer-events: none;
+}
+
+textarea:focus~.label,
+textarea:valid~.label{
+    top: -30px;
+    font-size: 15px;
+    color: black;
+}
+
+.barra{
+    position: relative;
+    display: block;
+    width: 100%;
+}
+
+.barra::before{
+    content: "";
+    height: 2px;
+    width: 0%;
+    bottom: 0;
+    position: absolute;
+    background: linear-gradient(to right, #B06AB3, #4568DC);
+    transition: 0.3s ease width;
+    left: 0;
+}
+
+.create_input:focus~.barra::before{
+    width: 100%;
+}
+
+.btn_submit{
+    font-family: system-ui;
+    background: #6D6875;
+    border: 1px solid;
+    display: block;
+    width: 80%;
+    margin: 10px auto;
+    color: #fff;
+    height: 40px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    box-shadow: 
+    0 0 2px rgb(255 240 243), 
+    0 0 4px rgb(255 204 213), 
+    0 0 6px rgb(255 179 193), 
+    0 0 8px rgb(255 143 163), 
+    0 0 10px rgb(255 117 143), 
+    0 0 12px rgb(255 77 109);
+}
+
+.select_create {
+    background-color: #FFCDB2;
+    color: black;
+    padding: 7px;
+    font-size: 16px;
+    appearance: button;
+    outline: none;
+    margin: 10px;
+    font-family: system-ui;
+  }
+
+.select_create .option_create {
+    padding: 30px;
+  }
+
+  .danger {
+      color: #d90429
+  }
+
+  .box_opcion {
+    display: inline-block;
+    margin-right: 10px;
+    margin-bottom: 15px;
+    background-color: #fbb1bd;
+    padding: 5px;
+    border-radius: 5px;
+  }
+
+  .opcion_title {
+    display: inline-block;
+    margin-right: 10px;
+    font-size: 12px;
+  }
+
+  .btn_remove {
+    display: inline-block;
+    width: 30px;
+    text-align: center;
+    padding: 0;
+    height: 20px;
+    background: #a4133c;
+  }
+
+  .x {
+      color: white;
+  }
+
+  .box_home {
+    margin-top: 20px;
+  }
+
+  .back_home {
+    border-radius: 8px;
+    padding: 8px;
+    text-decoration: none;
+    font-family: system-ui;
+    background: #6D6875;
+    border: 1px solid;
+    display: block;
+    width: 20%;
+    margin: 10px auto;
+    color: #fff;
+    height: 40px;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 
+    0 0 2px rgb(255 240 243), 
+    0 0 4px rgb(255 204 213), 
+    0 0 6px rgb(255 179 193), 
+    0 0 8px rgb(255 143 163), 
+    0 0 10px rgb(255 117 143), 
+    0 0 12px rgb(255 77 109);
+    font-weight: 400;
+  }

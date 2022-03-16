@@ -1,0 +1,46 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #6D6875;
+  }
+
+  .box {
+    display: inline;
+    top: 50%;
+    left: 50%;
+  }
+
+  .box select {
+    background-color: #FFCDB2;
+    color: black;
+    padding: 7px;
+    font-size: 16px;
+    appearance: button;
+    outline: none;
+    margin: 10px;
+    font-family: monospace
+  }
+  
+  .box select option {
+    padding: 30px;
+    font-family: monospace;
+  }
+
+  .btn {
+  padding:6px 10px;
+  text-align:center;
+  margin:.6rem auto;
+  font-size:1rem;
+  color:#FFCDB2;
+  text-decoration:none;
+  background-color:#2b2d42;
+  border-radius:35px;
+  transition:.3s;
+  font-family:system-ui;
+  }
+
+  .btn:hover{
+    color:#fff;
+    background-color:#000;
+    box-shadow:0 0 2px 2px rgba(0,0,0,0.4);
+  }

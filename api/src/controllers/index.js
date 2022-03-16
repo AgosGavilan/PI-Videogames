@@ -17,8 +17,8 @@ const infoApi = async() => {
                     //released: v.released,
                     image: v.background_image,
                     rating: v.rating,
-                    platforms: v.platforms.map(el => el.platform.name),
-                    genres: v.genres.map(el => el.name)
+                    platforms: v.platforms?.map(el => el.platform.name),
+                    genres: v.genres?.map(el => el.name)
                 })
             });
             url = respuesta.data.next
@@ -53,7 +53,7 @@ const infoTotal = async () => {
     const apiData = await infoApi ();
     const dbData = await infoDB();
     //ahora uno mis dos constantes contenedoras de funciones
-    const infoCompleta = apiData.concat(dbData)
+    const infoCompleta = dbData.concat(apiData)
     return infoCompleta
 }
 //*************************************************************************** */
@@ -61,56 +61,57 @@ const infoTotal = async () => {
 //SOLICITUD PARA MIS REQUEST POR QUERY
 //A MI API
 const nameApi = async (name) => {
-    const infoSearch = await axios.get(`https://api.rawg.io/api/games?search=${name}&key=1a255eb156d941f2b6001a54e1973aa2`)
+    const infoSearch = await axios.get(`https://api.rawg.io/api/games?search=${name}&key=1a255eb156d941f2b6001a54e1973aa2`) 
+    //console.log(infoSearch) //infoSearch = {{[]}} => me llega un objeto, que tiene una propiedad data y que a su vez tiene una propiedad results que es un []
 
     try {
-        const vgSearch = infoSearch.data.results.map(el => {
+        const vgSearch = await infoSearch.data.results.map(el => { //[{}, {}, {}]
             return {
                 id: el.id,
                 name: el.name,
                 //released: el.released,
                 image: el.background_image,
                 rating: el.rating,
-                platforms: el.platforms.map(el => el.platform.name),
-                genres: el.genres.map(el => el.name)
+                platforms: el.platforms?.map(el => el.platform.name),// [{platfom{}}] => [""]
+                genres: el.genres?.map(el => el.name) // [{}] => ['']
             }
         })
-        return vgSearch;
+        return vgSearch; //=> [{}]
     }catch(e) {
         console.error(e)
     }
 }
 
 //A MI DB
-const nameDB = async (name) => {
-    try {
-    return await Videogame.findAll({ //SELECT * FROM Videogame where name=name
-            where: {
-                name: {
-                    [Op.iLike]: "%"+ name+"%" //no distingue entre mayusculas y minusculas
-                }
-            },
-           include: [{
-               model: Genres, 
-               atributes: ['name'], 
-               throught: { 
-                   attributes: [] 
-               }
-           }]
-       })
-    } catch(e) {
-        console.error(e)
-    }
-}
+// const nameDB = async (name) => {
+//     try {
+//     return await Videogame.findAll({ //SELECT * FROM Videogame where name=name
+//             where: {
+//                 name: {
+//                     [Op.iLike]: `%${name}%` //no distingue entre mayusculas y minusculas
+//                 }
+//             },
+//            include: [{
+//                model: Genres, 
+//                atributes: ['name'], 
+//                throught: { 
+//                    attributes: [] 
+//                }
+//            }]
+//        })
+//     } catch(e) {
+//         console.error(e)
+//     }
+// }
 
-//UNO MIS DOS SOLICITUDES
-const allNames = async (name) => {
-    const api = await nameApi (name);
-    const db = await nameDB(name);
-    //ahora uno mis dos constantes contenedoras de funciones
-    const union = api.concat(db)
-    return union
-}
+// UNO MIS DOS SOLICITUDES
+// const allNames = async (name) => {
+//     const api = await nameApi (name);
+//     const db = await nameDB(name);
+//     ahora uno mis dos constantes contenedoras de funciones
+//     const union = api.concat(db)
+//     return union
+// }
 //************************************************************************************************** */
 
 //SOLICITUD PARA MIS REQUEST POR PARAMS
@@ -124,11 +125,11 @@ const idApi = async (id) => {
                 id: vgId.id,
                 name: vgId.name,
                 image: vgId.background_image,
-                genres: vgId.genres.map(g => g.name),
+                genres: vgId.genres?.map(g => g.name),
                 description: vgId.description,
                 released: vgId.released,
                 rating: vgId.rating,
-                platforms: vgId.platforms.map(el => el.platform.name)
+                platforms: vgId.platforms?.map(el => el.platform.name)
 
             }
             return info
@@ -173,9 +174,9 @@ const videogame = async (id) => {
 
 module.exports = {
     infoTotal,
-    allNames,
     videogame,
     infoApi,
-    infoDB
+    infoDB,
+    nameApi
 }
 

@@ -36,6 +36,10 @@ export const getNames = (name) => {
       });
     } catch (err) {
       console.error(err);
+      return dispatch({
+        type: "GET_NAMES",
+        payload: []
+      })
     }
   };
 };

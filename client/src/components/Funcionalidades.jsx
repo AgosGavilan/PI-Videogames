@@ -1,62 +1,54 @@
 import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { filterByGenres, filterBySource, getAllVideogames, getByGenres, orderBy } from "../redux/actions";
+import { getAllVideogames, getByGenres} from "../redux/actions";
+import s from '../style/Funcionalidades.module.css'
 
 
+const Funcionalidades = ({handleFilter, handleSort, handleSource}) => {
 
-const Funcionalidades = () => {
-
-    const dispatch = useDispatch()
-    const generos = useSelector(state => state.genres)
+    const dispatch = useDispatch() //el useDispatch devuelve el metodo dispatch que permite dispatchar acciones
+    const generos = useSelector(state => state.genres)// el useSelector lee un valor del estado del store(reducer) y se suscribe a las actualizaciones del mismo.
     //console.log(generos)
 
-    useEffect(() => {
+    useEffect(() => { //
         dispatch(getByGenres())
         dispatch(getAllVideogames())
     }, [dispatch])
 
-    function handleSort(e) {
-        dispatch(orderBy(e.target.value))
-    }
 
-    function handleFilter(e) {
-        dispatch(filterByGenres(e.target.value))
-    }
-
-    function handleSource(e) {
-        dispatch(filterBySource(e.target.value))
-    }
+    // const handleRefresh = (e) => {
+    //     e.preventDefault()
+    //     dispatch(getAllVideogames())
+        //dispatch(filterBySource())
+    //}
 
     return (
-        <div>
-            <div>
-                <label>Order by:    </label>
+            <div className={s.box}>
                     <select onChange={e => handleSort(e)}>
-                        <option value="A-Z">A-Z</option>
-                        <option value="Z-A">Z-A</option>
+                        <option value="" >Ordenar por...</option>
+                        <option value="A-Z" >A-Z</option>
+                        <option value="Z-A" >Z-A</option>
                         <option value="RatingAsc">Rating Asc</option>
                         <option value="RatingDesc">Rating Desc</option>
                     </select>
-                <label>Genres: </label>
+
                     <select id="genre" onChange={e => handleFilter(e)}>
-                        <option>Select Genre...</option>
+                        <option value=''>Generos</option>
                         {generos && generos.map(g => {
                             return (
                                 <option key={g.id} value={g.name}>{g.name}</option>
                             )
                         })}
                     </select>
-                <label>Source:   </label>
-                    <select onChange={e => handleSource(e)}>
-                        <option value="">Select Source</option>
-                        <option value='all'>All</option>
-                        <option value="api">API</option>
-                        <option value="crated">Created</option>
-                    </select>
-            </div>
 
-        </div>
+                    <select onChange={e => handleSource(e)}>
+                        <option value=''>Filtrar por Origen</option>
+                        <option value="api">API</option>
+                        <option value="created">Created</option>
+                    </select>
+                    {/* <button className={s.btn}onClick={e => handleRefresh(e)}>Refresh</button> */}
+            </div>
     )
 }
 

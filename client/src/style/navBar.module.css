@@ -1,0 +1,97 @@
+.nav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #2b2d42;
+    box-shadow: 
+    0 0 2px rgb(255 240 243), 
+    0 0 4px rgb(255 204 213), 
+    0 0 6px rgb(255 179 193), 
+    0 0 8px rgb(255 143 163), 
+    0 0 10px rgb(255 117 143), 
+    0 0 12px rgb(255 77 109);
+}
+
+
+.opcion {
+    text-align: center;
+    padding: 57px 0px;
+    text-decoration: none;
+    float: left;
+}
+
+.to{
+    color: #fff;
+    text-decoration: none;
+    border: #FFCDB2 solid 1px;
+    padding: 5px;
+    border-radius: 10px;
+    font-size: 21px;
+    font-family: monospace;
+    box-shadow:  
+    0 0 3px rgb(255 240 243),
+    0 0 6px rgb(255 204 213),
+    0 0 9px rgb(255 179 193),
+    0 0 12px rgb(255 143 163),
+    0 0 15px rgb(255 117 143),
+    0 0 18px rgb(255 77 109);
+}
+
+.to:hover {
+    background-color: #B5838D;
+}
+
+.to:active {
+    background-color: darkgrey;
+    box-shadow: 0 2px #621708;
+    transform: translateY(2px);
+}
+
+.search{
+    padding: 0;
+    margin: 0 16px;
+}
+
+.gif {
+    display: table-cell;
+    padding-top: 0.5vw;
+    width:19vw;
+    margin: -34px;
+    height: auto;
+}
+
+.imagencita {
+    justify-content: center;
+    position: relative;
+    margin: 0 40px 0 0;
+    height: auto;
+    width: auto;
+}
+
+.busqueda {
+    padding: 0;
+}
+
+.btn {
+    text-align: center;
+    padding: 57px 0px;
+    text-decoration: none;
+    float: right;
+    color: #fff;
+    text-decoration: none;
+    border: #FFCDB2 solid 1px;
+    padding: 5px;
+    border-radius: 10px;
+    font-size: 21px;
+    font-family: monospace;
+    box-shadow: 0 0 3px rgb(255 240 243), 0 0 6px rgb(255 204 213), 0 0 9px rgb(255 179 193), 0 0 12px rgb(255 143 163), 0 0 15px rgb(255 117 143), 0 0 18px rgb(255 77 109);
+    background: bottom;
+    margin: 50px 10px 0px;
+    cursor: pointer;
+}
+

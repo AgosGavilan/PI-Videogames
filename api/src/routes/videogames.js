@@ -1,6 +1,6 @@
 const { Router } = require('express');
 require('dotenv').config();
-const {infoTotal, allNames, infoApi} = require('../controllers')
+const {infoTotal, allNames, infoApi, nameApi, infoDB} = require('../controllers')
 
 const router = Router();
 
@@ -12,9 +12,15 @@ router.get('/', async (req, res, next) => {
 
     if(name) { 
         try { 
-            //let searchByName = totalNames.filter(el => el.name.toLowerCase().includes(name.toLocaleLowerCase()))
-            const searchByName = await allNames(name)
-            searchByName.length ? res.send(searchByName.slice(0,15)) : res.status(400).send('No hay un videojuego con dicho nombre')
+            // const searchByName = await allNames(name)
+            // searchByName.length ? res.status(200).send(searchByName.slice(0,15)) : res.status(400).send('No hay un videojuego con dicho nombre')
+
+            const foundGamesAPI = await nameApi(name)
+            const gamesByNameDB = await infoDB()
+            let foundGamesDB =  gamesByNameDB.filter(el => el.name.toLowerCase().includes(name.toLowerCase()))
+            let allResults = foundGamesDB.concat(foundGamesAPI)
+            allResults.length ? res.status(200).send(allResults.slice(0,15)) : res.status(400).send('No hay un videojuego con dicho nombre')
+
         } catch(err) {
             next(err)
         }

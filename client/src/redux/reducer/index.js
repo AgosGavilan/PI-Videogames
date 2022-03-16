@@ -46,7 +46,7 @@ function rootReducer(state = initialState, action) {
                 ...state
             }
         case ORDER_BY:
-            let vgCopy = [...state.allVideogames];
+            let vgCopy = [...state.allVideogames]; //hago una copia de mi estado importante
             let ordenamiento
 
             switch (action.payload) {
@@ -91,43 +91,43 @@ function rootReducer(state = initialState, action) {
             }
             return {
                 ...state,
-                allVideogames: ordenamiento
-            };
-        case FILTER_BY_SOURCE:
-            let getVg = state.videogames;
-            let filtrado = []
-
-            switch(action.payload) {
-                // case 'created': filtrado = getVg.filter(el => el.createdAt); break;
-                // case 'api': filtrado = getVg.filter(el => !el.createdAt); break
-                // default : filtrado = getVg; break;
-                case 'api': filtrado = getVg.filter(el => typeof (el.id) === 'number'); break;
-                case 'created': filtrado = getVg.filter(el => el.id.includes('-')); break;
-                default: filtrado = getVg; break;
-            }
-            return {
-                ...state,
-                allVideogames: filtrado
+                allVideogames: ordenamiento,
+                videogames : ordenamiento
             };
         case FILTER_BY_GENRES:
             let aux = [];
             if(action.payload) {
                 aux = state.videogames.filter(e => {
-                    if(e.genres.length === 0 || e.genres === null || e.genres === undefined){
+                    if(e.genres.length === 0){
                         return e.genres
                     }
-                    else {
+                    else if(e.genres.some(e => e.name === action.payload)) {
+                        return e.genres.map(el => el.name)
+                    } else {
                         return e.genres.includes(action.payload)
                     }
                 })
             } else {
-                aux = [...state.videogames]
+                aux = state.videogames
             }
 
             return {
                 ...state,
-                allVideogames: aux
+                allVideogames: aux,
             }
+            case FILTER_BY_SOURCE:
+                let getVg = state.videogames;
+                let filtrado = []
+    
+                switch(action.payload) {
+                    case 'api': filtrado = getVg.filter(el => typeof (el.id) === 'number'); break;
+                    case 'created': filtrado = getVg.filter(el => isNaN(el.id)); break;
+                    default: filtrado = getVg; break;
+                }
+                return {
+                    ...state,
+                    allVideogames: filtrado
+                };
         case GET_PLATFORMS:
             return {
                 ...state,

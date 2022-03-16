@@ -22,7 +22,7 @@ router.post('/', async (req, res, next) => {
     const {name, image, genres, released, rating, platforms, description} = req.body
        //la accion de crear una nueva instancia es asincrona, como manejo errores? con try y catch
     try {
-        const newVideogame = await Videogame.create ({ //le paso al create el objeto con todos los atributos que quiero que tenga mi nuevo videojuego
+        let newVideogame = await Videogame.create ({ //le paso al create el objeto con todos los atributos que quiero que tenga mi nuevo videojuego
             name,
             image,
             released,

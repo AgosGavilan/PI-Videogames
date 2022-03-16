@@ -1,0 +1,37 @@
+.paginacion {
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+  }
+
+.paginacion button {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  border: 1px solid #370617;
+  margin: 0 4px
+}
+
+.paginacion button:focus {
+  background-color: black;
+  color: azure;
+}
+
+.paginacion button.activo {
+    background-color: #370617;
+    color: white;
+  }
+
+.paginacion button:hover:not(.activo){
+    background-color: gray;
+  }
+
+.paginacion button:first-child {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+  }
+
+.paginacion button:last-child {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}

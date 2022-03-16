@@ -8,7 +8,7 @@ import store from './redux/store'
 import { BrowserRouter } from 'react-router-dom'
 
 ReactDOM.render(
-  <Provider store={store}>
+  <Provider store={store}> {/*este componente hace que el store de Redux este disponible para TODA la app*/}
     <BrowserRouter>
       <React.StrictMode>
         <App />

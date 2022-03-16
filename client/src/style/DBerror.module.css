@@ -1,0 +1,9 @@
+.kirby {
+    margin: 0;
+    padding: 0;
+}
+
+.kirby img {
+    height: 60%;
+    width: 60%;
+}

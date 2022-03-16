@@ -1,31 +1,49 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { useState } from "react";
 import { getAllVideogames } from "../redux/actions";
-import img from '../imagenes/default.png'
+import img from '../imagenes/d0898894122ab331c6411faee24cd4bd.jpg'
 import CardVideogame from "./CardVideogame";
+import s from '../style/Videogames.module.css'
+import Loading from './Loading'
+import DBerror from "./DBerror";
 
-export const Videogames = () => {
-
+export const Videogames = ({currentGames}) => {
     const dispatch = useDispatch()
+    const [carga, setCarga] = useState(true);
+
     React.useEffect(() => {
-        dispatch(getAllVideogames()) //me traigo la action creators q me trae todos mis videojuegos de la API
+        dispatch(getAllVideogames()).then(() => setCarga(false)) //me traigo la action creators q me trae todos mis videojuegos de la API
     }, [])
 
-    const allVideogames = useSelector(state => state.allVideogames) //me traigo del reducer el estado en donde guarde todos mis videojuegos
+    //const allVideogames = useSelector(state => state.allVideogames) //me traigo del reducer el estado en donde guarde todos mis videojuegos
 
+    if (carga) {
+        return <Loading />;
+      }
 
     return (
-        <div>
-            {allVideogames && allVideogames.map(v => {
+        <div className={s.main}>
+            {/* {currentGames && currentGames.map(v => {
                 return (<CardVideogame
                 key={v.id}
                 id={v.id}
                 image={v.image ? v.image : img}
                 name={v.name}
-                genres={v.genres && v.genres.join(', ')}
+                genres={v.genres.map(e => typeof (e) === 'object' ? e.name : e).join(', ')}
                 rating={v.rating}
                 />)
-            })}
+            })} */}
+            {currentGames.length > 0 ?
+            currentGames?.map(v => {
+                return (<CardVideogame
+                    key={v.id}
+                    id={v.id}
+                    image={v.image ? v.image : img}
+                    name={v.name}
+                    genres={v.genres?.map(e => typeof (e) === 'object' ? e.name : e).join(', ')}
+                    rating={v.rating}
+                    />)}) : <DBerror /> }
 
         </div>
     )
