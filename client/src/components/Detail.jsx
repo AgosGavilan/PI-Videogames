@@ -10,9 +10,10 @@ import Loading from './Loading'
 function Detail() {
 
     const [carga, setCarga] = useState(true);
-    const {id} = useParams()
+    const {id} = useParams() //rutas dinamicas, Podemos acceder a cualquier parámetro de ruta de una ruta declarada con su componente asociado usando el hook useParams.
 
     const dispatch = useDispatch()
+
     React.useEffect(() => {
         dispatch(getVideogame(id)).then(() => setCarga(false))
     }, [])
@@ -28,26 +29,6 @@ function Detail() {
 
 
     return(
-        // <div className={s.conteiner}>
-        //     <div className={s.card}>
-        //         <img src={details.image ? details.image : img } alt={`${details.name}'s`}/>
-        //     </div>
-        //     <div className={s.card_body}>
-        //             <p className={s.generos}>{details.genres?.map(g => (g.name ? g.name : g)).join(', ')}</p>
-        //             <h3 className={s.nombre}>{details.name}</h3>
-        //             <p className={s.rating}>Rating: ★ {details.rating}</p>
-        //         <div className={s.divider}></div>
-        //             <div className={s.description}>Description: {details.description?.replace(regex, '').replace('&#39', '')}</div>
-        //             <div className={s.fecha}>Released: {details.released}</div>
-        //             <div className={s.plataformas}>Platforms: {details.platforms?.join(', ')}</div>
-        //         <div className={s.btn}>
-        //             <NavLink to={'/home'}>
-        //                 <button>Back Home</button>
-        //             </NavLink>
-        //         </div>
-        //         </div>
-        // </div>
-
         <div className={s.wrapper}>
             <div className={s.main_card}>
                 <div className={s.card_left}>
@@ -67,10 +48,10 @@ function Detail() {
                 </div>
             </div>
             <div>
-                    <NavLink to={'/home'} className={s.btn}>
-                         <span>↵ Back Home</span>
-                    </NavLink>
-                </div>
+                <NavLink to={'/home'} className={s.btn}>
+                    <span>↵ Back Home</span>
+                </NavLink>
+            </div>
 
         </div>
     )

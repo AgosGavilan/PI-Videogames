@@ -177,7 +177,10 @@ textarea:valid~.label{
   }
 
   .danger {
-      color: #d90429
+      color: #d90429;
+      line-height: 0px;
+      font-size: 12px;
+      margin-top: 10px;
   }
 
   .box_opcion {

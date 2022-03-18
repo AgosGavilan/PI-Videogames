@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { createVideogame, getByGenres, getPlatforms } from "../redux/actions";
 import s from '../style/Create.module.css'
 import { NavLink } from "react-router-dom";
+import { useNavigate } from 'react-router-dom'
 
 function validate (input) {
   let errors = {}
@@ -24,7 +25,7 @@ function validate (input) {
   if(!input.description) {
     errors.description = 'La descripcion es requerida'
   } else if (input.description.length > 100) {
-    errors.description = 'La descripcion es muy larga. (Max = 1000 caracteres)'
+    errors.description = 'La descripcion es muy larga. (Max = 100 caracteres)'
   }
 
   if(!input.released) {
@@ -37,18 +38,10 @@ function validate (input) {
     errors.rating = 'El rating debe estar entre 0 y 5, incliyendo decimales'
   }
 
-  if(input.genres.length === 0){
-    errors.genres = "Es necesario que elija al menos un género"
-}
-
-  if(input.platforms.length === 0){
-    errors.platforms = "Es necesario que elija al menos una plataforma"
-  }
-
   return errors //la funcion validate devuelve el objeto errors, ya sea vacio o con alguna propiedad si es q encuentra un error
 }
 
-function Create() {
+export default function Create() {
   const [input, setInput] = useState({
     name: "",
     image: "",
@@ -62,6 +55,8 @@ function Create() {
   const [errors, setErrors] = useState({});
   
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const generos = useSelector((state) => state.genres);
   const plataformas = useSelector(state => state.platforms);
   const allNames = useSelector(state => state.allVideogames)
@@ -70,7 +65,7 @@ function Create() {
   useEffect(() => {
     dispatch(getByGenres());
     dispatch(getPlatforms())
-  }, [dispatch])
+  }, [])
   
   function handleSubmit(e) {
     e.preventDefault();
@@ -78,10 +73,11 @@ function Create() {
     if(noRepeat.length !== 0) {
       alert('Ya existe un juego con ese nombre, por favor elija otro')
     } else {
-        let error = Object.keys(validate(input)) // Object.keys(errors) --> errors = {} => devuelve un array de stringsq representa todas las propiedades del objeto
+        let error = Object.keys(validate(input)) // Object.keys(errors) --> errors = {} => devuelve un array de strings q representa todas las propiedades del objeto
         //solo habra propiedades si es que HAY ALGUN ERROR
-        if(error.length !== 0) { //Entonces si hay algun error, error va a ser un array con la propiedad en donde haya un error, osea que su length !== 0
+        if(error.length !== 0 || !input.genres.length || !input.platforms.length) { //Entonces si hay algun error, error va a ser un array con la propiedad en donde haya un error, osea que su length !== 0
           alert('Llene los campos correctamente')
+          return
         } else {
           dispatch(createVideogame(input));
           setInput({
@@ -94,10 +90,8 @@ function Create() {
             platforms: [],
           });
           alert("Felicidades, el juego fue creado exitosamente.");
-          setTimeout(() => {
-            window.location.replace('/home') //cuando creo mi juego, automaticamente me redirijira a mi ruta home
-          }, 3000)
         }
+        navigate('/home')
 
     }
   }
@@ -107,22 +101,28 @@ function Create() {
     setInput((prev) => ({ ...prev, [e.target.name]: e.target.value }));
     setErrors(validate({
       ...input,
-      [e.target.name]: e.target.value
-    }))
+      [e.target.name]: [e.target.value]
+    })
+    )
+    console.log(errors)
   }
 
   function handleGenres(e) {
-    setInput({
-      ...input,
-      genres: [...input.genres, e.target.value],
-    });
+    if(!input.genres.includes(e.target.value)) {
+      setInput({
+        ...input,
+        genres: [...input.genres, e.target.value],
+      })
+    }
   }
 
   function handlePlatforms(e) {
-    setInput({
-      ...input,
-      platforms: [...input.platforms, e.target.value]
-    })
+    if(!input.platforms.includes(e.target.value)) {
+      setInput({
+        ...input,
+        platforms: [...input.platforms, e.target.value]
+      })
+    }
   }
 
   function handleDeleteG(e) {
@@ -218,13 +218,10 @@ function Create() {
                 })}
             </select> <span className={s.barra}></span>
             <label className={s.label}>Generos: </label>
-            {errors.genres && (
-              <p className={s.danger}>{errors.genres}</p>
-            )}
             {input.genres.map((g) => (
               <div className={s.box_opcion}>
                 <div className={s.opcion_title}>{g}</div>
-                <button className={s.btn_remove} onClick={() => handleDeleteG(g)}><span className={s.x}>X</span></button>
+                <button className={s.btn_remove} onClick={() => handleDeleteG(g)} key={g} value={g}><span className={s.x}>X</span></button>
               </div>
         ))}
           </div>
@@ -240,13 +237,10 @@ function Create() {
                     })}
               </select> <span className={s.barra}></span>
               <label className={s.label}>Plataformas:  </label>
-              {errors.platforms && (
-              <p className={s.danger}>{errors.platforms}</p>
-            )}
               {input.platforms.map((p) => (
                 <div className={s.box_opcion}>
                   <div className={s.opcion_title}>{p}</div>
-                  <button className={s.btn_remove} onClick={() => handleDeleteP(p)}><span className={s.x}>X</span></button>
+                  <button className={s.btn_remove} onClick={() => handleDeleteP(p)} key={p} value={p}><span className={s.x}>X</span></button>
                 </div>
               ))}
           </div>
@@ -272,21 +266,7 @@ function Create() {
           <NavLink to={'/home'} className={s.back_home}>↵ Back Home</NavLink>
       </div>
       </form>
-      {/* {input.genres.map((g) => (
-        <div>
-          <span>{g}</span>
-          <button onClick={() => handleDeleteG(g)}>X</button>
-        </div>
-      ))} */}
-      {/* {input.platforms.map((p) => (
-        <div>
-          <span>{p}</span>
-          <button onClick={() => handleDeleteP(p)}>X</button>
-        </div>
-      ))} */}
 
     </div>
   );
 };
-
-export default Create;

@@ -17,12 +17,6 @@ const Funcionalidades = ({handleFilter, handleSort, handleSource}) => {
     }, [dispatch])
 
 
-    // const handleRefresh = (e) => {
-    //     e.preventDefault()
-    //     dispatch(getAllVideogames())
-        //dispatch(filterBySource())
-    //}
-
     return (
             <div className={s.box}>
                     <select onChange={e => handleSort(e)}>

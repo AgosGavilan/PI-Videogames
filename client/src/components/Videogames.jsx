@@ -6,7 +6,7 @@ import img from '../imagenes/d0898894122ab331c6411faee24cd4bd.jpg'
 import CardVideogame from "./CardVideogame";
 import s from '../style/Videogames.module.css'
 import Loading from './Loading'
-import DBerror from "./DBerror";
+import Error from "./Error";
 
 export const Videogames = ({currentGames}) => {
     const dispatch = useDispatch()
@@ -24,16 +24,6 @@ export const Videogames = ({currentGames}) => {
 
     return (
         <div className={s.main}>
-            {/* {currentGames && currentGames.map(v => {
-                return (<CardVideogame
-                key={v.id}
-                id={v.id}
-                image={v.image ? v.image : img}
-                name={v.name}
-                genres={v.genres.map(e => typeof (e) === 'object' ? e.name : e).join(', ')}
-                rating={v.rating}
-                />)
-            })} */}
             {currentGames.length > 0 ?
             currentGames?.map(v => {
                 return (<CardVideogame
@@ -43,7 +33,7 @@ export const Videogames = ({currentGames}) => {
                     name={v.name}
                     genres={v.genres?.map(e => typeof (e) === 'object' ? e.name : e).join(', ')}
                     rating={v.rating}
-                    />)}) : <DBerror /> }
+                    />)}) : <Error /> }
 
         </div>
     )

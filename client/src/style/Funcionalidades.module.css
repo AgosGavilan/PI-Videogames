@@ -8,6 +8,7 @@ body {
     display: inline;
     top: 50%;
     left: 50%;
+    border-radius: 8px;
   }
 
   .box select {
@@ -18,7 +19,8 @@ body {
     appearance: button;
     outline: none;
     margin: 10px;
-    font-family: monospace
+    font-family: monospace;
+    border-radius: 10px;
   }
   
   .box select option {

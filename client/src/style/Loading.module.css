@@ -5,7 +5,8 @@
     width: 100%;
 }
 
-/* .box_loading img {
-    height: 150px;
-    width: 150px;
-} */
+.box_loading img {
+    height: 130px;
+    width: 130px;
+    margin-top: 15%;
+}

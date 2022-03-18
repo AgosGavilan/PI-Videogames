@@ -5,10 +5,10 @@ const {Videogame, Genres} = require('../db.js')
 //SOLICITUD PARA TODOS MIS VIDEOJUEGOS
 //A LA API
 const infoApi = async() => {
-    let url = `https://api.rawg.io/api/games?key=1a255eb156d941f2b6001a54e1973aa2`
+    let url = `https://api.rawg.io/api/games?key=bc1bb0ae62664232a0e926209f30dd87`
     let videojuegos = []
     try {
-        for(let i=0; i<6; i++) {
+        for(let i=0; i<5; i++) {
             const respuesta = await axios.get(url)
             respuesta.data.results.map(v => {
                 videojuegos.push({
@@ -61,7 +61,7 @@ const infoTotal = async () => {
 //SOLICITUD PARA MIS REQUEST POR QUERY
 //A MI API
 const nameApi = async (name) => {
-    const infoSearch = await axios.get(`https://api.rawg.io/api/games?search=${name}&key=1a255eb156d941f2b6001a54e1973aa2`) 
+    const infoSearch = await axios.get(`https://api.rawg.io/api/games?search=${name}&key=bc1bb0ae62664232a0e926209f30dd87`) 
     //console.log(infoSearch) //infoSearch = {{[]}} => me llega un objeto, que tiene una propiedad data y que a su vez tiene una propiedad results que es un []
 
     try {
@@ -81,44 +81,13 @@ const nameApi = async (name) => {
         console.error(e)
     }
 }
-
-//A MI DB
-// const nameDB = async (name) => {
-//     try {
-//     return await Videogame.findAll({ //SELECT * FROM Videogame where name=name
-//             where: {
-//                 name: {
-//                     [Op.iLike]: `%${name}%` //no distingue entre mayusculas y minusculas
-//                 }
-//             },
-//            include: [{
-//                model: Genres, 
-//                atributes: ['name'], 
-//                throught: { 
-//                    attributes: [] 
-//                }
-//            }]
-//        })
-//     } catch(e) {
-//         console.error(e)
-//     }
-// }
-
-// UNO MIS DOS SOLICITUDES
-// const allNames = async (name) => {
-//     const api = await nameApi (name);
-//     const db = await nameDB(name);
-//     ahora uno mis dos constantes contenedoras de funciones
-//     const union = api.concat(db)
-//     return union
-// }
 //************************************************************************************************** */
 
 //SOLICITUD PARA MIS REQUEST POR PARAMS
 //A MI ENDPOINT: https://api.rawg.io/api/games/{id}
 const idApi = async (id) => {
     try {
-        const rtaApi = await axios.get(`https://api.rawg.io/api/games/${id}?key=1a255eb156d941f2b6001a54e1973aa2`)
+        const rtaApi = await axios.get(`https://api.rawg.io/api/games/${id}?key=bc1bb0ae62664232a0e926209f30dd87`)
         if(rtaApi) {
             const vgId = await rtaApi.data
             const info = {
@@ -179,4 +148,6 @@ module.exports = {
     infoDB,
     nameApi
 }
+
+
 

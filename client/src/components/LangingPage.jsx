@@ -14,7 +14,7 @@ const LandingPage = () => {
                             <span className={s.span2}></span>
                             <span className={s.span3}></span>
                             <span className={s.span4}></span>
-                            <span className={s.ingresar}>INGRESAR</span>
+                            <span className={s.ingresar}>GET STARTED</span>
                         </button>
                     </Link>
                 </div>

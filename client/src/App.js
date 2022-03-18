@@ -4,6 +4,7 @@ import Home from './components/Home';
 import LandingPage from './components/LangingPage';
 import Detail from './components/Detail';
 import Create from './components/Create';
+import Page404 from './components/Page404';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route exact path={'/home'} element={<Home />} />
         <Route exact path={'/detail/:id'} element={<Detail />} />
         <Route exact path={'/create'} element={<Create />} />
+        <Route path={'*'} element={<Page404/>} />
       </Routes>
     </div>
   );

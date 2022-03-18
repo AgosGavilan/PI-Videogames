@@ -30,15 +30,13 @@ router.post('/', async (req, res, next) => {
             platforms,
             description
         })
-        const relacion = await Genres.findAll({ //en generos, buscame todos
+        const relacion = await Genres.findAll({ //en generos, buscame todos aquellos
             where: { //donde
-                name: genres //el name, sea el genero
+                name: genres
             }
         })
-        await newVideogame.addGenres(relacion) //aca añado a mi nuevo videojuego, mi genero
+        await newVideogame.addGenres(relacion) //a mi juego creado, le agrego algun genero
         res.json(newVideogame)
-
-
 
     } catch(e) {
         next(e)
@@ -46,7 +44,20 @@ router.post('/', async (req, res, next) => {
 })
 
 
+
+
 module.exports = router;
+
+
+
+
+
+
+
+
+
+
+
 
 // {
 //     "name": "lola",

@@ -1,95 +1,22 @@
-/* body {
-	background-color: #f4f4f4;
-	color: white;
-	font-family: "Lato";
-}
-
-.container {
-	display: flex;
-    justify-content: center;
-    
-}
-
-.card{
-	height: 280px;
-	margin: 0 auto;
-	max-width: 600px;
-	overflow: hidden;
-    display: flex;
-    justify-content: center;
-}
-
-.card img {
-	height: 100%;
-    margin: 20px auto;
-}
-
-.card_body{
-    color: grey;
-	height: 100%;
-	padding: 30px 250px 50px;
-}
-
-.description {
-    display: grid;
-    place-items: center;
-    font-size: 15px;
-    padding: 10px;
-}
-
-.generos {
-    font-size: 12px;
-	text-transform: uppercase;
-}
-
-.nombre {
-    color: #252830;
-	font-family: "Playfair Display SC";
-	font-size: 30px;
-	font-weight: 400;
-}
-
-.rating {
-    font-size: 12px;
-	text-transform: uppercase;
-}
-
-.divider {
-	background: grey;
-	height: 2px;
-	margin: 25px auto;
-	width: 400px;
-}
-
-.fecha {
-    margin: 25px auto;
-}
-
-.btn {
-    margin: 25px auto;
-} */
 
 body {
 	margin: 0;
 	padding: 0;
 	font-family: 'Lato';
 }
-
 .main_card {
-	color: #FFCDB2;
-	width: 1000px;
-	height: auto;
+	color: darkred;
+	height: 100%;
 	width: auto;
 	margin: 50px auto;
-	display: -webkit-box;
-	display: -ms-flexbox;
 	display: flex;
 	max-width: 770px;
-	background: black; 
+	background-image: linear-gradient(to top, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
+    box-shadow: 0 0 4px rgb(255 240 243), 0 0 8px rgb(255 204 213), 0 0 12px rgb(255 179 193), 0 0 16px rgb(255 143 163), 0 0 20px rgb(255 117 143), 0 0 24px rgb(255 77 109);
 }
 
 .card_left {
-	width: 90%;
+	width: 100%;
     border: 1px solid black;
 }
 
@@ -105,15 +32,13 @@ body {
 }
 
 .card_right img {
-    width: 360px;
-	height: 470px;
-	border-radius: 2px;
+    width: 100%;
+	height: 100%;
     border: 1px solid black;
 }
 .card_right {
-	border-radius: 2px;
 	height: auto;
-	width: auto;
+	width: 100%;
 }
 
 .card_cat {
@@ -123,8 +48,9 @@ body {
 	display: -ms-flexbox;
 	display: flex;
 	-webkit-box-pack: justify;
-	    -ms-flex-pack: justify;
-	        justify-content: space-between;
+	-ms-flex-pack: justify;
+	justify-content: space-between;
+	padding-right: 5px;
 }
 
 .rating .genres .fecha{
@@ -146,6 +72,7 @@ body {
     font-size: 13px;
     margin-top: 25px;
     text-align: center;
+	padding: 0 5px;
 }
 
 .plataformas {
@@ -154,6 +81,7 @@ body {
     font-size: 13px;
     margin-top: 25px;
     text-align: center;
+	padding: 0 5px;
 }
 
 .btn {
@@ -170,11 +98,6 @@ body {
 	margin-left: 10px;
 	background: black;
 	border-radius: 8px;
-	/* -webkit-box-shadow: 0 0 20px rgba(0,0,0,0.2);
-	        box-shadow: 0 0 20px rgba(0,0,0,0.2);
-	-webkit-transition: 300ms ease-in-out;
-	-o-transition: 200ms ease-in-out;
-	transition: 200ms ease-in-out; */
 	box-shadow:  
     0 0 3px rgb(255 240 243),
     0 0 6px rgb(255 204 213),

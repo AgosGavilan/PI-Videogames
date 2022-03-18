@@ -1,0 +1,38 @@
+.titulo {
+    font-family: monospace;
+    color: darkred;
+    font-size: 45px;
+    margin-top: 30px;
+}
+
+.pregunta {
+    font-family: monospace;
+    font-size: 25px;
+    color: darkgray;
+}
+
+.mini_box{
+    display: flex;
+    justify-content: center;
+    margin: 25px;
+}
+
+.nav{
+    margin: 15px;
+    color: #fff;
+    text-decoration: none;
+    border: #fff;
+    padding: 8px;
+    width: 7%;
+    font-family: monospace;
+    margin-top: 15px;
+    background: black;
+    border-radius: 0px;
+    box-shadow: 
+    0 0 1px rgb(255 240 243), 
+    0 0 2px rgb(255 204 213), 
+    0 0 3px rgb(255 179 193), 
+    0 0 4px rgb(255 143 163), 
+    0 0 6px rgb(255 117 143), 
+    0 0 17px rgb(255 77 109);
+}

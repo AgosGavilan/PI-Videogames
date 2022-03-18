@@ -1,5 +1,5 @@
 import React from 'react'
-import loading from '../imagenes/1-r4K1PRHfbKG7NpoRx22K4A-unscreen.gif'
+import loading from '../imagenes/cargando-unscreen.gif'
 import s from '../style/Loading.module.css'
 
 export default function PaginaDeCarga() {
