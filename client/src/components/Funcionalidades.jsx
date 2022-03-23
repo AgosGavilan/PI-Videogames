@@ -14,7 +14,7 @@ const Funcionalidades = ({handleFilter, handleSort, handleSource}) => {
     useEffect(() => { //
         dispatch(getByGenres())
         dispatch(getAllVideogames())
-    }, [dispatch])
+    }, [])
 
 
     return (

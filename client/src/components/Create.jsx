@@ -12,8 +12,6 @@ function validate (input) {
 
   if(!input.name) {
     errors.name = 'El nombre es requerido'
-  } else if(input.name.length < 3 || input.name.length > 20) {
-    errors.name = 'Nombre entre 3 y 20 caracteres'
   } else if(!/^[a-zA-Z0-9-() .]+$/.test(input.name)){
     errors.name = 'Solo se aceptan letras, numeros, guiones medios y parentesis'
   }
@@ -34,8 +32,10 @@ function validate (input) {
 
   if(!input.rating) {
     errors.rating = 'El rating es requerido'
-  } else if(input.rating > 5 || input.rating < 0) {
-    errors.rating = 'El rating debe estar entre 0 y 5, incliyendo decimales'
+  } else if(input.rating > 5) {
+    errors.rating = 'El rating no debe ser mayor a 5'
+  } else if(input.rating < 0) {
+    errors.rating = 'El rating no puede ser un numero negativo'
   }
 
   return errors //la funcion validate devuelve el objeto errors, ya sea vacio o con alguna propiedad si es q encuentra un error
@@ -52,7 +52,7 @@ export default function Create() {
     platforms: []
   });
 
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState({}); //me creo un estado local, en donde errors = {}
   
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -104,7 +104,7 @@ export default function Create() {
       [e.target.name]: [e.target.value]
     })
     )
-    console.log(errors)
+    //console.log(errors)
   }
 
   function handleGenres(e) {
@@ -144,6 +144,7 @@ export default function Create() {
       <form onSubmit={(e) => handleSubmit(e)} className={s.box_form}>
         <div className={s.form}>
           <h2 className={s.titulo}>CREA TU PROPIO VIDEOJUEGO</h2>
+
           <div className={s.grupo}>
             <input
               className={s.create_input}
