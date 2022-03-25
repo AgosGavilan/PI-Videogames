@@ -11,7 +11,6 @@ function Detail() {
 
     const [carga, setCarga] = useState(true);
     const {id} = useParams() //rutas dinamicas, Podemos acceder a cualquier parámetro de ruta de una ruta declarada con su componente asociado usando el hook useParams.
-
     const dispatch = useDispatch()
 
     React.useEffect(() => {

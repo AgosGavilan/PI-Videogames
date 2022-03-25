@@ -65,7 +65,8 @@ html, body {
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
-  margin-top: 265px;
+  margin-top: 140px;
+  margin-bottom: 43px;
 }
 
 .btn:hover {
@@ -77,6 +78,21 @@ html, body {
 .btn:active {
   transform: scale(1.025);
 }
+
+.links {
+  height: 17px;
+  width: 15px;
+  display: flex;
+  margin-bottom: -200px;
+}
+
+.mini_box img{
+    height: 60px;
+    width: 60px;
+    padding: 10px;
+}
+
+
 
   /* .btn {
     width: 220px;

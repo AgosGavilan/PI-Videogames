@@ -113,7 +113,7 @@ export const filterByGenres = (payload) => {
 export const getPlatforms = () => {
   return async (dispatch) => {
       const url = await axios.get('http://localhost:3001/videogames/platforms')
-      console.log(url)
+      //console.log(url)
       return dispatch({
           type: 'GET_PLATFORMS',
           payload: url.data

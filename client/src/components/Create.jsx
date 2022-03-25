@@ -264,7 +264,7 @@ export default function Create() {
           <button type="submit" className={s.btn_submit}>CREAR VIDEOJUEGO</button>
       </div>
       <div className={s.box_home}>
-          <NavLink to={'/home'} className={s.back_home}>↵ Back Home</NavLink>
+          <NavLink to={'/home'} className={s.back_home}>Cancelar</NavLink>
       </div>
       </form>
 
