@@ -1,26 +1,26 @@
 const { default: axios } = require('axios');
-const { Op } = require('sequelize');
 const {Videogame, Genres} = require('../db.js')
 
-//SOLICITUD PARA TODOS MIS VIDEOJUEGOS
+//SOLICITUD PARA TRAERME MIS 100 VIDEOJUEGOS
 //A LA API
 const infoApi = async() => {
     let url = `https://api.rawg.io/api/games?key=bc1bb0ae62664232a0e926209f30dd87`
     let videojuegos = []
     try {
-        for(let i=0; i<5; i++) {
-            const respuesta = await axios.get(url)
-            respuesta.data.results.map(v => {
-                videojuegos.push({
+        for(let i=0; i<5; i++) { //con un for recorro mi API, ya que es un arreglo, 5 veces
+            const respuesta = await axios.get(url) //realizo la peticion
+            //en mi .data podemos encontrar dos propiedades, results que es es aquello que voy a mapear
+            respuesta.data.results.map(v => { //a la respuesta/resultado lo mapeo
+                videojuegos.push({ //y pusheo en mi array vacio todo aquello que mapee
                     id: v.id,
                     name: v.name,
-                    //released: v.released,
                     image: v.background_image,
                     rating: v.rating,
                     platforms: v.platforms?.map(el => el.platform.name),
                     genres: v.genres?.map(el => el.name)
                 })
             });
+            //y next que es donde voy a entrar para pasar a la siguente pagina.
             url = respuesta.data.next
         }
         return videojuegos
