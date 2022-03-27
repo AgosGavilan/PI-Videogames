@@ -5,7 +5,6 @@ import s from "../style/navBar.module.css"
 import imagen from '../imagenes/videogame.png'
 import { getAllVideogames } from "../redux/actions";
 import { useDispatch } from "react-redux";
-import Loading from './Loading'
 
 export default function NavBar() {
 

@@ -15,7 +15,7 @@ function Detail() {
 
     React.useEffect(() => {
         dispatch(getVideogame(id)).then(() => setCarga(false))
-    }, [])
+    }, [dispatch, id])
 
     const details = useSelector(state => state.videogame)
     //console.log(details)

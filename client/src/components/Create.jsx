@@ -65,7 +65,7 @@ export default function Create() {
   useEffect(() => {
     dispatch(getByGenres());
     dispatch(getPlatforms())
-  }, [])
+  }, [dispatch])
   
   function handleSubmit(e) {
     e.preventDefault();

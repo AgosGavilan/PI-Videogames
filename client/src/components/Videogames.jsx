@@ -14,7 +14,7 @@ export const Videogames = ({currentGames}) => {
 
     React.useEffect(() => {
         dispatch(getAllVideogames()).then(() => setCarga(false)) //me traigo la action creators q me trae todos mis videojuegos de la API
-    }, [])
+    }, [dispatch])
 
     //const allVideogames = useSelector(state => state.allVideogames) //me traigo del reducer el estado en donde guarde todos mis videojuegos
 

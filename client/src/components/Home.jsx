@@ -10,7 +10,7 @@ export default function Home () {
     const allGames = useSelector(state => state.allVideogames)
 
     const [currentPage, setCurrentPage] = useState(1) //lo seteo en 1 porque siempre arranco por la primer pagina
-    const [gamesPerPage, setGamesPerPage] = useState(15) //cantidad de juegos que debe haber por pagina
+    const gamesPerPage = 15//cantidad de juegos que debe haber por pagina
     const indexOfLastGame = currentPage * gamesPerPage // 1 * 15 = 15
     const indexOfFirstGame= indexOfLastGame - gamesPerPage // 15 - 15 = 0
     const currentGames = allGames.slice(indexOfFirstGame, indexOfLastGame) //para dividir la cantidad de juegos por pagina

@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllVideogames, getByGenres} from "../redux/actions";
+import { getByGenres} from "../redux/actions";
 import s from '../style/Funcionalidades.module.css'
 
 
@@ -14,7 +14,7 @@ const Funcionalidades = ({handleFilter, handleSort, handleSource}) => {
     useEffect(() => { //
         dispatch(getByGenres())
         //dispatch(getAllVideogames())
-    }, [])
+    }, [dispatch])
 
 
     return (
